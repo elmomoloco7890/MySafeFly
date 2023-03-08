@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="confirmationFragment"
+            type="prime.projects.mysafefly.confirmation.ConfirmationFragment" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_traveler_information"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fullNameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Full Name: John Doe" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/ageTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Age: 27" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/passportNumberTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Passport Number: 12345abcde" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/title_travel_add_ons"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/travelAddOnsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="This, this and that" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/title_promo_code"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/promoCodeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="FreePassPromoCode" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirmTravelInformationButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:onClick="@{()-> confirmationFragment.confirmationClicked()}"
+            android:text="@string/label_confirm"
+            app:cornerRadius="0dp"
+            android:padding="10dp"
+            android:textSize="16sp"
+            tools:ignore="VisualLintButtonSize" />
+
+    </LinearLayout>
+</layout>

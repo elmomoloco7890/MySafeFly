@@ -1,14 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".travel_information.TravelInformationFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="travelInformationFragment"
+            type="prime.projects.mysafefly.travel_information.TravelInformationFragment" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".travel_information.TravelInformationFragment">
 
-</FrameLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="none">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <include
+                    android:id="@+id/layoutTravelInformation"
+                    layout="@layout/layout_traveler_information" />
+
+                <include
+                    android:id="@+id/layoutTravelAddOns"
+                    layout="@layout/layout_travel_add_ons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp" />
+
+                <include
+                    android:id="@+id/layoutPromoCode"
+                    layout="@layout/layout_promo_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/next"
+            android:onClick="@{()-> travelInformationFragment.nextClicked()}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:text="@string/label_next"
+            app:cornerRadius="0dp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

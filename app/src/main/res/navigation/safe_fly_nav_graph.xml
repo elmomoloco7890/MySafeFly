@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/safe_fly_nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/safe_fly_nav_graph"
+    app:startDestination="@id/travelInformationFragment">
 
+    <fragment
+        android:id="@+id/travelInformationFragment"
+        android:name="prime.projects.mysafefly.travel_information.TravelInformationFragment"
+        tools:layout="@layout/fragment_travel_information"
+        android:label="TravelInformationFragment" >
+        <action
+            android:id="@+id/action_travelInformationFragment_to_confirmationFragment"
+            app:destination="@id/confirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmationFragment"
+        tools:layout="@layout/fragment_confirmation"
+        android:name="prime.projects.mysafefly.confirmation.ConfirmationFragment"
+        android:label="ConfirmationFragment" >
+        <argument
+            android:name="travelerInformation"
+            app:argType="prime.projects.mysafefly.travel_information.TravelerInformation" />
+        <argument
+            android:name="travelAddOns"
+            app:argType="integer[]" />
+        <argument
+            android:name="promoCode"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_confirmationFragment_to_travelInformationFragment"
+            app:destination="@id/travelInformationFragment" />
+    </fragment>
 </navigation>
