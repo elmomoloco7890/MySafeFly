@@ -9,8 +9,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import prime.projects.mysafefly.addons.TravelAddOnsProvider
 import prime.projects.mysafefly.databinding.FragmentTravelInformationBinding
-
-
+import android.text.TextUtils
+import androidx.fragment.app.activityViewModels
+import prime.projects.mysafefly.model.MySafeFlyViewModel
 
 
 class TravelInformationFragment : Fragment() {
@@ -18,6 +19,10 @@ class TravelInformationFragment : Fragment() {
     private lateinit var binding: FragmentTravelInformationBinding
 
     private val clickListener = TravelAddOnsClickListener()
+
+    private var isClicked: Boolean? = null
+
+    private val sharedViewModel: MySafeFlyViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,7 +82,17 @@ class TravelInformationFragment : Fragment() {
             travelerInformation,
             addOns,
             promoCodes)
-        findNavController().navigate(directions)
+        if (TextUtils.isEmpty(binding.layoutTravelInformation.ageEditText.text.toString())){
+            sharedViewModel.makingShortToastMessages(requireActivity(), "Please no empty strings")
+        } else if (TextUtils.isEmpty(binding.layoutTravelInformation.fullNameEditText.text.toString())){
+            sharedViewModel.makingShortToastMessages(requireActivity(), "Please fill out your name")
+        } else if (TextUtils.isEmpty(binding.layoutTravelInformation.passportNumberEditText.text.toString())){
+            sharedViewModel.makingShortToastMessages(requireActivity(), "Please fill out a number")
+        } else if (TextUtils.isEmpty(binding.layoutPromoCode.promoCodeEditText.text.toString())){
+            sharedViewModel.makingShortToastMessages(requireActivity(), "Fill out a promo-code number")
+        } else {
+            findNavController().navigate(directions)
+        }
 
     }
 

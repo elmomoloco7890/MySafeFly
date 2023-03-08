@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import prime.projects.mysafefly.R
 import prime.projects.mysafefly.addons.TravelAddOnsProvider
 import prime.projects.mysafefly.databinding.FragmentConfirmationBinding
+import prime.projects.mysafefly.model.MySafeFlyViewModel
 import prime.projects.mysafefly.travel_information.TravelerInformation
 
 
@@ -20,6 +22,8 @@ class ConfirmationFragment : Fragment() {
     private lateinit var binding: FragmentConfirmationBinding
 
     private val args: ConfirmationFragmentArgs by navArgs()
+
+    private val sharedViewModel: MySafeFlyViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +39,7 @@ class ConfirmationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val bundle = arguments
         if(bundle == null){
-            makingToasts(requireActivity(), "ConfirmationFragment did not receive traveler information")
+            sharedViewModel.makingLongToastMessages(requireActivity(), "ConfirmationFragment did not receive traveler information")
         }
         getArgs()
         binding.apply {
@@ -56,7 +60,7 @@ class ConfirmationFragment : Fragment() {
     }
 
     fun confirmationClicked(){
-        makingToasts(requireActivity(), "Travel information confirmed!")
+        sharedViewModel.makingShortToastMessages(requireActivity(), "Travel information confirmed!")
         findNavController().navigate(R.id.action_confirmationFragment_to_travelInformationFragment)
     }
 
@@ -84,7 +88,7 @@ class ConfirmationFragment : Fragment() {
         }
     }
 
-    private fun makingToasts(activity: Context, toastMessage: String){
+    /*private fun makingToasts(activity: Context, toastMessage: String){
         Toast.makeText(activity, toastMessage, Toast.LENGTH_LONG).show()
-    }
+    }*/
 }
